@@ -17,8 +17,8 @@ namespace VanillaEnhancements;
 [ReactorModFlags(Reactor.Networking.ModFlags.None)]
 public partial class VanillaEnhancementsPlugin : BasePlugin
 {
-    public const string Id = "com.chipseq.vanillaenhancements";
-    public const string VersionString = "1.2.0";
+    public const string Id = "com.SuperIdol.vanillaenhancements";
+    public const string VersionString = "2.0.0";
     public static bool IsDevRelease = false;
 
     public static System.Version Version = System.Version.Parse(VersionString);
@@ -27,10 +27,9 @@ public partial class VanillaEnhancementsPlugin : BasePlugin
     public override void Load()
     {
         VELogger.Info("Vanilla Enhancements is loading...");
-
         bool[] dev = CheckDevRelease().Result;
         IsDevRelease = dev[0];
-        ReactorCredits.Register("VanillaEnhancements", VersionString + (IsDevRelease ? "-indev" : "") + (dev[1] ? " (Update Available)" : ""), false, ReactorCredits.AlwaysShow);
+        ReactorCredits.Register("Vanilla Enhancements", "v2.0.0", false, ReactorCredits.AlwaysShow);
         ModConfig.Bind(Config);
         PlayerMuting.Setup();
         IL2CPPChainloader.Instance.Finished += ModCompatibility.Load;
@@ -52,7 +51,7 @@ public partial class VanillaEnhancementsPlugin : BasePlugin
         bool[] exists = await HttpVersionExists(url);
         VELogger.Info($"IsDevRelease: {!exists[0]} ({(exists[1] ? "success" : "fail")})");
         VELogger.Info($"UpdateAvailable: {exists[2]} ({(exists[1] ? "success" : "fail")})");
-        return [!exists[0], exists[2]];
+        return new bool[] { !exists[0], exists[2] };
     }
 
     static async Task<bool[]> HttpVersionExists(string url)
@@ -81,12 +80,12 @@ public partial class VanillaEnhancementsPlugin : BasePlugin
                 }
             }
 
-            return [found, true, updateAvailable];
+            return new bool[] { found, true, updateAvailable };
         }
         catch (HttpRequestException ex)
         {
             VELogger.Error($"Failed to check for dev release: {ex.Message}");
-            return [false, false];
+            return new bool[] { false, false };
         }
     }
 }

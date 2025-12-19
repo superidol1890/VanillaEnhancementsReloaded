@@ -4,9 +4,9 @@
         <LangVersion>latest</LangVersion>
         <DebugType>embedded</DebugType>
 
-        <VersionPrefix>1.2.0</VersionPrefix>
+        <VersionPrefix>2.0.0</VersionPrefix>
         <Description>Enhancements for the vanilla game</Description>
-        <Authors>Chipseq</Authors>
+        <Authors>Chipseq, Super Idol</Authors>
     </PropertyGroup>
 
     <ItemGroup>
