@@ -1,3 +1,5 @@
+# Note: Vanilla Enhancements works with v2025.11.18(v17.1.0).
+
 # Vanilla Enhancements
 
 An among us mod adding lots of quality-of-life features to the game.
